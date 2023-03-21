@@ -81,4 +81,4 @@ fahrenheitLink.addEventListener("click", displayfahrenheitTemperature);
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-search("Austin");
+search("Kyle");
