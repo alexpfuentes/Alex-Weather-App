@@ -14,8 +14,8 @@ function formatDate(timestamp) {
 }
 
 function search(city) {
-  let apikey = "4c3ab30f0419b703b56ofe9631t0a52a";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&units=imperial`;
+  let apiKey = "4c3ab30f0419b703b56ofe9631t0a52a";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
@@ -25,8 +25,7 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-function displayTemperature(response) {
-  console.log(response.data);
+function displayTemperature(response) { 
     let cityElement = document.querySelector("#city");
     let temperatureElement = document.querySelector("#temperature");
     let descriptionElement = document.querySelector("#description");
@@ -47,6 +46,8 @@ function displayTemperature(response) {
     dateElement.innerHTML = formatDate(response.data.time * 1000);
     iconElement.setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png` );
     iconElement.setAttribute("alt", response.data.condition.description); 
+
+    getForecast(response.data.coordinates);
 }
 
 function displayCelsiusTemperature(event) {
@@ -70,7 +71,8 @@ function displayfahrenheitTemperature(event) {
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -78,7 +80,7 @@ function displayForecast() {
   days.forEach(function(day){
       forecastHTML = forecastHTML + 
   `
-  <div class="col-2">
+  <div class="col">
     <div class="weather-forecast-date">${day}</div>
     <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png" alt="" class="small-icon">
     <div class="weather-forecast-temperature">
@@ -97,7 +99,12 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
-displayForecast();
+function getForecast(coordinates) {
+  let apiKey = "4c3ab30f0419b703b56ofe9631t0a52a";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}`
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
 
 let fahrenheitTemperature = null;
 
