@@ -13,6 +13,18 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`
 }
 
+function search(city) {
+  let apikey = "4c3ab30f0419b703b56ofe9631t0a52a";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&units=imperial`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
 function displayTemperature(response) {
   console.log(response.data);
     let cityElement = document.querySelector("#city");
@@ -37,18 +49,6 @@ function displayTemperature(response) {
     iconElement.setAttribute("alt", response.data.condition.description); 
 }
 
-function search(city) {
-  let apikey = "4c3ab30f0419b703b56ofe9631t0a52a";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&units=imperial`;
-  axios.get(apiUrl).then(displayTemperature);
-}
-
-function handleSubmit(event) {
-  event.preventDefault();
-  let cityInputElement = document.querySelector("#city-input");
-  search(cityInputElement.value);
-}
-
 function displayCelsiusTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
@@ -69,6 +69,35 @@ function displayfahrenheitTemperature(event) {
 
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  days.forEach(function(day){
+      forecastHTML = forecastHTML + 
+  `
+  <div class="col-2">
+    <div class="weather-forecast-date">${day}</div>
+    <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png" alt="" class="small-icon">
+    <div class="weather-forecast-temperature">
+      <span class="weather-forecast-temperature-max">
+        18°
+      </span>
+      <span class="weather-forecast-temperature-min">
+        12°
+      </span>
+    </div> 
+  </div> 
+  `;
+  })
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
 
 let fahrenheitTemperature = null;
 
