@@ -43,11 +43,12 @@
           </li>
           <li class="description" id="description"></li>
         </ul>
-      </div>
+      </div> <!-- overview -->
+      
       <div class="row">
 
         <div class="col-6">
-          <img src="" alt="" id="icon" />
+          <img src="" alt="" id="icon" class="big-icon" />
         </div>
 
         <div class="col-6">
@@ -57,38 +58,60 @@
               ><a href="#" id="fahrenheit-link" class="active">°F</a> | 
               <a href="#" id="celsius-link">°C</a></span>
             </div>
-          </div>
+          </div> <!-- weather temperature -->
         </div>
 
-        <div class="condition">
+      </div> <!-- row -->
+
+      <div class="condition">
         <div class="container text-center">
           <div class="row align-items-start">
+
             <div class="col">
              🌡️ Feels Like:
               <span id="feels-like"></span>°
             </div>
+
             <div class="col">
               💧Humidity:
               <span id="humidity"></span>
               %
             </div>
+
             <div class="col">
               🍃Wind:
               <span id="wind"></span>
               Km/H
             </div>
-          </div>
-        </div>
-      </div>
 
-      </div>
-    </div>
+          </div> <!-- align items -->
+        </div> <!-- container text center -->
+      </div> <!-- condition -->
+
+      <div class="weather-forecast">
+        <div class="row">
+          <div class="col-2">
+            <div class="weather-forecast-date">Wednesday</div>
+            <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png" alt="" class="small-icon">
+            <div class="weather-forecast-temperature">
+              <span class="weather-forecast-temperature-max">
+                18°
+              </span>
+              <span class="weather-forecast-temperature-min">
+                12°
+              </span>
+            </div> <!-- weather forecast temperature -->
+          </div> <!-- col-2 -->
+        </div> <!-- row-->
+      </div> <!-- weather forecast -->
+
+    </div> <!-- weather app -->
       <small>
 				<a href="https://github.com/alexpfuentes/Alex-Weather-App"
 				target="_blank">Open-source code</a>, by Alex Fuentes
       </small>
-  </div>
- </div>
+    </div> <!-- weather app wrapper -->
+  </div> <!-- container -->
     <script src="src/app.js"></script>
 </body>
 </html>
