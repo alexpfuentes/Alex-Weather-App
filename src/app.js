@@ -65,6 +65,7 @@ function displayCelsiusTemperature(event) {
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
 
+
   let celsiusTemperature = ( fahrenheitTemperature - 32) * 5/9;
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
@@ -78,8 +79,6 @@ function displayfahrenheitTemperature(event) {
 
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
-
-
 
 function displayForecast(response) {
   let forecast = response.data.daily;
