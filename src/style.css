@@ -9,12 +9,12 @@ body {
   }
   
   .weather-app {
-    background-color: white;
+    background-color: rgb(240, 247, 254);
     max-width: 700px;
     margin: 30px auto;
     padding: 20px;
     border: 2px solid #dadde1;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 0 8px grey;
   }
   
@@ -56,18 +56,9 @@ body {
     font-weight: 500;
   }
   
-  .weather-temperature .units {
+  .weather-temperature .unit {
     position: relative;
     top: -34px;
-  }
-  
-  .weather-temperature a {
-    text-decoration: none;
-  }
-  
-  .weather-temperature .active {
-    color: black;
-    cursor: default;
   }
   
   .condition {
@@ -76,9 +67,11 @@ body {
   }
 
   .weather-forecast {
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
     color: #000;
+    background-color: white;
+    border-radius:10px ;
   }
 
   .weather-forecast-date {
